@@ -69,7 +69,7 @@ class ContactInfoSection extends Component {
           <input
             type="text"
             value={allInfo[info] ? allInfo[info] : ''}
-            placeholder={info}
+            placeholder={info[0].toUpperCase() + info.substring(1)}
             onChange={this.handleChange}
             data-type={info}
             key={info}
@@ -83,7 +83,7 @@ class ContactInfoSection extends Component {
           // Check if no value available for field
           allInfo[info] ?
           <li key={info}>{allInfo[info]}</li> :
-          <li key={info}>{info}</li>
+          <li key={info}>{info[0].toUpperCase() + info.substring(1)}</li>
         );
 
       }

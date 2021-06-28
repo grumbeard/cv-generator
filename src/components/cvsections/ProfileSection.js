@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-class NameSection extends Component {
+class ProfileSection extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: this.props.name,
+      profile: {
+        summary: this.props.profile.summary
+      },
       isEditOn: false
-    };
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleToggleEdit = this.handleToggleEdit.bind(this);
@@ -16,13 +18,15 @@ class NameSection extends Component {
 
   handleChange(e) {
     this.setState({
-      name: e.target.value
+      profile: {
+        summary: e.target.value
+      }
     });
   }
 
   handleToggleEdit() {
     this.setState({
-      isEditOn: !this.state.isEditOn
+      isEditOn: true
     });
   }
 
@@ -30,31 +34,31 @@ class NameSection extends Component {
     this.setState({
       isEditOn: false
     });
-    this.props.onSave(this.state.name)
+    this.props.onSave(this.state.profile);
   }
 
   render() {
-    let name;
+    let summary;
     if (this.state.isEditOn) {
 
       // Display info as input field
-      name = <input
-              type="text"
-              value={this.state.name ? this.state.name : ''}
-              placeholder="Your Name"
-              onChange={this.handleChange}
-            />;
+      summary = <textarea
+                  value={this.state.profile.summary ? this.state.profile.summary : ''}
+                  placeholder="Professional Summary"
+                  onChange={this.handleChange}
+                >
+                </textarea>;
 
     } else {
 
       // Display info as text
-      name = <h1>{this.state.name ? this.state.name : 'Your Name'}</h1>;
+      summary = <p>{this.state.profile.summary ? this.state.profile.summary : 'Professional Summary'}</p>
 
     }
 
     return(
       <div>
-        {name}
+        {summary}
         <div onClick={this.handleToggleEdit}>EDIT</div>
         <div onClick={this.handleSave}>SAVE</div>
       </div>
@@ -62,4 +66,4 @@ class NameSection extends Component {
   }
 }
 
-export default NameSection
+export default ProfileSection
