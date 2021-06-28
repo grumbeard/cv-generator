@@ -36,14 +36,20 @@ class NameSection extends Component {
   render() {
     let name;
     if (this.state.isEditOn) {
+
+      // Display info as input field
       name = <input
               type="text"
               value={this.state.name ? this.state.name : ''}
               placeholder="Your Name"
               onChange={this.handleNameChange}
             />;
+
     } else {
+
+      // Display info as text
       name = <h1>{this.state.name ? this.state.name : 'your name'}</h1>;
+
     }
 
     return(
