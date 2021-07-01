@@ -70,7 +70,7 @@ class WorkExperienceSection extends Component {
       workInfo.forEach(job => {
         jobs.push(
           <Job
-            info={job}
+            job={job}
             isEditOn={this.state.isEditOn}
             key={job.id}
             onChange={this.handleJobChange}

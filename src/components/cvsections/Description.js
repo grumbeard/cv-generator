@@ -4,11 +4,6 @@ class Description extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      description: this.props.info,
-      jobId: this.props.jobId
-    };
-
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -16,28 +11,25 @@ class Description extends Component {
     let index = e.target.dataset.index;
     let targetValue = e.target.value;
 
-    let newDescription = [...this.state.description];
+    let newDescription = [...this.props.description];
 
     newDescription.splice(index, 1, targetValue);
+    console.log(index, targetValue, newDescription);
 
-    this.setState({
-      description: newDescription
-    });
-
-    this.props.onChange(this.state.description);
+    this.props.onChange(newDescription);
   }
 
   render() {
 
     let summary = [];
-    if (this.state.description.length !== 0) {
+    if (this.props.description.length !== 0) {
 
       if (this.props.isEditOn) {
 
         // Display info as input fields
-        this.state.description.forEach((line, index) => {
+        this.props.description.forEach((line, index) => {
           summary.push(
-            <li key={this.state.jobId + index}>
+            <li key={this.props.jobId + index}>
               <textarea
                 value={line}
                 onChange={this.handleChange}
@@ -50,8 +42,8 @@ class Description extends Component {
       } else {
 
         // Display info as text
-        this.state.description.forEach((line, index) => {
-          summary.push(<li key={this.state.jobId + index}>{line}</li>);
+        this.props.description.forEach((line, index) => {
+          summary.push(<li key={this.props.jobId + index}>{line}</li>);
         });
 
       }

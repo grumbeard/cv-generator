@@ -5,48 +5,39 @@ class Job extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      job: {
-        title: this.props.info.title,
-        yearStart: this.props.info.yearStart,
-        yearEnd: this.props.info.yearEnd,
-        currentlyWorking: this.props.info.currentlyWorking,
-        companyName: this.props.info.companyName,
-        description: this.props.info.description,
-        id: this.props.info.id
-      }
-    };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleAddDescription = this.handleAddDescription.bind(this);
   }
 
   handleChange(e) {
     const targetField = e.target.dataset.type;
     const targetValue = e.target.value;
 
-    let newJob = JSON.parse(JSON.stringify(this.state.job));
+    let newJob = JSON.parse(JSON.stringify(this.props.job));
 
     newJob[targetField] = targetValue;
 
-    this.setState({
-      job: newJob
-    });
-
-    this.props.onChange(this.state.job);
+    this.props.onChange(newJob);
   }
 
   handleDescriptionChange(description) {
-    this.setState({
-      job: {
-        ...this.state.job,
-        description: description
-      }
-    });
+    let newJob = JSON.parse(JSON.stringify(this.props.job));
+
+    newJob.description = description;
+
+    this.props.onChange(newJob);
+  }
+
+  handleAddDescription() {
+    let newDescription = JSON.parse(JSON.stringify(this.props.job.description));
+    newDescription.push('Summary of Achievements');
+
+    this.handleDescriptionChange(newDescription);
   }
 
   render() {
-    const { title, yearStart, yearEnd, currentlyWorking, companyName, description, id } = this.state.job;
+    const { title, yearStart, yearEnd, currentlyWorking, companyName, description, id } = this.props.job;
 
     let titleContent, yearsContent, companyContent;
 
@@ -112,11 +103,12 @@ class Job extends Component {
           <tr>
             <td>
               <Description
-                info={description}
+                description={description}
                 isEditOn={this.props.isEditOn}
                 onChange={this.handleDescriptionChange}
                 jobId={id}
               />
+              <div onClick={this.handleAddDescription}>ADD LINE</div>
             </td>
           </tr>
         </tbody>
