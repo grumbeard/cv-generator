@@ -106,7 +106,6 @@ class SkillsSection extends Component {
 
       // Display info as text
       skillsInfo.forEach(skill => {
-        console.log(skill);
         skills.push(
           // Check if value exists for field
           <li key={skill.id}>
