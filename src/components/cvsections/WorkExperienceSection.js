@@ -72,6 +72,7 @@ class WorkExperienceSection extends Component {
   componentDidMount() {
     // Create sample data if needed
     if (this.state.workInfo.length === 0) this.handleAddJob();
+    this.handleSave();
   }
 
   render() {

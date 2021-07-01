@@ -67,9 +67,9 @@ class ProfileSection extends Component {
     // Filter control options displayed
     let controls = [];
 
-    let editBtn = <div onClick={this.handleToggleEdit} key="contact-edit">EDIT</div>;
-    let saveBtn = <div onClick={this.handleSave} key="contact-save">SAVE</div>;
-    let cancelBtn = <div onClick={this.handleCancel} key="contact-cancel">CANCEL</div>;
+    let editBtn = <div onClick={this.handleToggleEdit} key="profile-edit">EDIT</div>;
+    let saveBtn = <div onClick={this.handleSave} key="profile-save">SAVE</div>;
+    let cancelBtn = <div onClick={this.handleCancel} key="profile-cancel">CANCEL</div>;
 
     if (this.state.isEditOn) {
       controls.push(cancelBtn, saveBtn);

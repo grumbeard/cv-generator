@@ -3,6 +3,7 @@ import NameSection from './cvsections/NameSection';
 import ContactInfoSection from './cvsections/ContactInfoSection';
 import ProfileSection from './cvsections/ProfileSection';
 import WorkExperienceSection from './cvsections/WorkExperienceSection';
+import SkillsSection from './cvsections/SkillsSection';
 
 class CVForm extends Component {
   constructor() {
@@ -27,6 +28,7 @@ class CVForm extends Component {
     this.handleContactSave = this.handleContactSave.bind(this);
     this.handleProfileSave = this.handleProfileSave.bind(this);
     this.handleWorkExperienceSave = this.handleWorkExperienceSave.bind(this);
+    this.handleSkillsSave = this.handleSkillsSave.bind(this);
   }
 
   handleNameSave(name) {
@@ -53,6 +55,12 @@ class CVForm extends Component {
     });
   }
 
+  handleSkillsSave(skillsInfo) {
+    this.setState({
+      skillsInfo: skillsInfo
+    });
+  }
+
   render() {
     return(
       <div>
@@ -67,6 +75,10 @@ class CVForm extends Component {
         <ProfileSection
           profile={this.state.profile}
           onSave={this.handleProfileSave}
+        />
+        <SkillsSection
+          skillsInfo={this.state.skillsInfo}
+          onSave={this.handleSkillsSave}
         />
         <WorkExperienceSection
           workInfo={this.state.workInfo}
