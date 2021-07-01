@@ -14,6 +14,7 @@ class ProfileSection extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleToggleEdit = this.handleToggleEdit.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   handleChange(e) {
@@ -37,6 +38,13 @@ class ProfileSection extends Component {
     this.props.onSave(this.state.profile);
   }
 
+  handleCancel() {
+    this.setState({
+      profile: this.props.profile,
+      isEditOn: false
+    });
+  }
+
   render() {
     let summary;
     if (this.state.isEditOn) {
@@ -56,11 +64,23 @@ class ProfileSection extends Component {
 
     }
 
+    // Filter control options displayed
+    let controls = [];
+
+    let editBtn = <div onClick={this.handleToggleEdit} key="contact-edit">EDIT</div>;
+    let saveBtn = <div onClick={this.handleSave} key="contact-save">SAVE</div>;
+    let cancelBtn = <div onClick={this.handleCancel} key="contact-cancel">CANCEL</div>;
+
+    if (this.state.isEditOn) {
+      controls.push(cancelBtn, saveBtn);
+    } else {
+      controls.push(editBtn);
+    }
+
     return(
       <div>
         {summary}
-        <div onClick={this.handleToggleEdit}>EDIT</div>
-        <div onClick={this.handleSave}>SAVE</div>
+        {controls}
       </div>
     )
   }

@@ -12,6 +12,7 @@ class NameSection extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleToggleEdit = this.handleToggleEdit.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   handleChange(e) {
@@ -22,7 +23,7 @@ class NameSection extends Component {
 
   handleToggleEdit() {
     this.setState({
-      isEditOn: !this.state.isEditOn
+      isEditOn: true
     });
   }
 
@@ -31,6 +32,13 @@ class NameSection extends Component {
       isEditOn: false
     });
     this.props.onSave(this.state.name)
+  }
+
+  handleCancel() {
+    this.setState({
+      name: this.props.name,
+      isEditOn: false
+    });
   }
 
   render() {
@@ -52,11 +60,23 @@ class NameSection extends Component {
 
     }
 
+    // Filter control options displayed
+    let controls = [];
+
+    let editBtn = <div onClick={this.handleToggleEdit} key="name-edit">EDIT</div>;
+    let saveBtn = <div onClick={this.handleSave} key="name-save">SAVE</div>;
+    let cancelBtn = <div onClick={this.handleCancel} key="name-cancel">CANCEL</div>;
+
+    if (this.state.isEditOn) {
+      controls.push(cancelBtn, saveBtn);
+    } else {
+      controls.push(editBtn);
+    }
+
     return(
       <div>
         {name}
-        <div onClick={this.handleToggleEdit}>EDIT</div>
-        <div onClick={this.handleSave}>SAVE</div>
+        {controls}
       </div>
     )
   }

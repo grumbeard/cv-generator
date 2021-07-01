@@ -90,6 +90,15 @@ class Job extends Component {
 
     }
 
+    // Filter control options displayed
+    let controls = [];
+
+    let addLineBtn = <div onClick={this.handleAddDescription}>ADD LINE</div>;
+
+    if (this.props.isEditOn) {
+      controls.push(addLineBtn);
+    }
+
     return(
       <table>
         <tbody>
@@ -108,7 +117,7 @@ class Job extends Component {
                 onChange={this.handleDescriptionChange}
                 jobId={id}
               />
-              <div onClick={this.handleAddDescription}>ADD LINE</div>
+              {controls}
             </td>
           </tr>
         </tbody>

@@ -16,6 +16,7 @@ class ContactInfoSection extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleToggleEdit = this.handleToggleEdit.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   handleChange(e) {
@@ -44,7 +45,7 @@ class ContactInfoSection extends Component {
 
   handleToggleEdit() {
     this.setState({
-      isEditOn: !this.state.isEditOn
+      isEditOn: true
     });
   }
 
@@ -53,6 +54,13 @@ class ContactInfoSection extends Component {
       isEditOn: false
     });
     this.props.onSave(this.state.contactInfo);
+  }
+
+  handleCancel() {
+    this.setState({
+      contactInfo: this.props.contactInfo,
+      isEditOn: false
+    });
   }
 
   render() {
@@ -89,13 +97,25 @@ class ContactInfoSection extends Component {
       }
     }
 
+    // Filter control options displayed
+    let controls = [];
+
+    let editBtn = <div onClick={this.handleToggleEdit} key="contact-edit">EDIT</div>;
+    let saveBtn = <div onClick={this.handleSave} key="contact-save">SAVE</div>;
+    let cancelBtn = <div onClick={this.handleCancel} key="contact-cancel">CANCEL</div>;
+
+    if (this.state.isEditOn) {
+      controls.push(cancelBtn, saveBtn);
+    } else {
+      controls.push(editBtn);
+    }
+
     return(
       <div>
         <ul>
           {contactInfo}
         </ul>
-        <div onClick={this.handleToggleEdit}>EDIT</div>
-        <div onClick={this.handleSave}>SAVE</div>
+        {controls}
       </div>
     );
   }
