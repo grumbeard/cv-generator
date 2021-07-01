@@ -31,7 +31,8 @@ class Description extends Component {
           summary.push(
             <li key={this.props.jobId + index}>
               <textarea
-                value={line}
+                value={line ? line : ''}
+                placeholder='Summary of Achievements'
                 onChange={this.handleChange}
                 data-index={index}>
               </textarea>
@@ -43,7 +44,11 @@ class Description extends Component {
 
         // Display info as text
         this.props.description.forEach((line, index) => {
-          summary.push(<li key={this.props.jobId + index}>{line}</li>);
+          summary.push(
+            <li key={this.props.jobId + index}>
+              {line ? line : 'Summary of Achievements'}
+            </li>
+          );
         });
 
       }

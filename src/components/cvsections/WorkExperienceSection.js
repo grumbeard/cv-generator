@@ -55,12 +55,12 @@ class WorkExperienceSection extends Component {
   handleAddJob() {
     let newWorkInfo = JSON.parse(JSON.stringify(this.state.workInfo));
     newWorkInfo.push({
-      title: 'job title',
-      yearStart: '2000',
-      yearEnd: '2010',
+      title: '',
+      yearStart: null,
+      yearEnd: null,
       currentlyWorking: false,
-      companyName: 'Company A',
-      description: ['Summary of Achievements'],
+      companyName: '',
+      description: [''],
       id: uniqid()
     });
 
@@ -72,7 +72,6 @@ class WorkExperienceSection extends Component {
   componentDidMount() {
     // Create sample data if needed
     if (this.state.workInfo.length === 0) this.handleAddJob();
-    this.handleSave();
   }
 
   render() {
@@ -94,7 +93,7 @@ class WorkExperienceSection extends Component {
     // Filter control options displayed
     let controls = [];
 
-    let addJobBtn = <div onClick={this.handleAddJob} key="work-add">ADD JOB</div>;
+    let addJobBtn = <div onClick={this.handleAddJob} key="job-add">ADD JOB</div>;
     let editBtn = <div onClick={this.handleToggleEdit} key="work-edit">EDIT</div>;
     let saveBtn = <div onClick={this.handleSave} key="work-save">SAVE</div>;
     let cancelBtn = <div onClick={this.handleCancel} key="work-cancel">CANCEL</div>;

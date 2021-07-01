@@ -31,7 +31,7 @@ class Job extends Component {
 
   handleAddDescription() {
     let newDescription = JSON.parse(JSON.stringify(this.props.job.description));
-    newDescription.push('Summary of Achievements');
+    newDescription.push('');
 
     this.handleDescriptionChange(newDescription);
   }
@@ -46,7 +46,7 @@ class Job extends Component {
       // Display info as input fields
       titleContent = <input
                     type="text"
-                    value={title}
+                    value={title ? title : ''}
                     placeholder="Job Title"
                     onChange={this.handleChange}
                     data-id={id}
@@ -55,7 +55,7 @@ class Job extends Component {
                   />;
       yearsContent = [<input
                     type="text"
-                    value={yearStart}
+                    value={yearStart ? yearStart : ''}
                     placeholder="Year Start"
                     onChange={this.handleChange}
                     data-id={id}
@@ -64,7 +64,7 @@ class Job extends Component {
                   />,
                   <input
                     type="text"
-                    value={yearEnd}
+                    value={yearEnd ? yearEnd : ''}
                     placeholder="Year End"
                     onChange={this.handleChange}
                     data-id={id}
@@ -73,8 +73,8 @@ class Job extends Component {
                   />];
       companyContent = <input
                     type="text"
-                    value={companyName}
-                    placeholder="Company"
+                    value={companyName ? companyName : ''}
+                    placeholder="Company X"
                     onChange={this.handleChange}
                     data-id={id}
                     data-type="companyName"
@@ -84,16 +84,16 @@ class Job extends Component {
     } else {
 
       // Display info as text
-      titleContent = title;
-      yearsContent = yearStart + ' - ' + yearEnd;
-      companyContent = companyName;
+      titleContent = title ? title : 'Job Title';
+      yearsContent = (yearStart ? yearStart : 2000) + ' - ' + (yearEnd ? yearEnd : 2010);
+      companyContent = (companyName ? companyName : 'Company X');
 
     }
 
     // Filter control options displayed
     let controls = [];
 
-    let addLineBtn = <div onClick={this.handleAddDescription}>ADD LINE</div>;
+    let addLineBtn = <div onClick={this.handleAddDescription} key="description-add">ADD LINE</div>;
 
     if (this.props.isEditOn) {
       controls.push(addLineBtn);

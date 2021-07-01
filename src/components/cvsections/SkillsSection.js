@@ -71,7 +71,6 @@ class SkillsSection extends Component {
   componentDidMount() {
     // Create sample data if needed
     if (this.state.skillsInfo.length === 0) this.handleAddSkill();
-    this.handleSave();
   }
 
   render() {
@@ -107,6 +106,7 @@ class SkillsSection extends Component {
 
       // Display info as text
       skillsInfo.forEach(skill => {
+        console.log(skill);
         skills.push(
           // Check if value exists for field
           <li key={skill.id}>
