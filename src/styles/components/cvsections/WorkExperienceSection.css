@@ -1,0 +1,51 @@
+.work-experience-section {
+  background-color: #CEC3EE;
+  grid-area: work;
+}
+
+.job-entry {
+  margin: 1em 0;
+}
+
+.job-entry tr {
+  margin: 0.5em 0;
+}
+
+.job-title {
+  text-transform: uppercase;
+}
+
+.job-company {
+  font-style: italic;
+  flex: 1;
+  margin-right: 1em;
+}
+
+.company-years-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-years {
+  max-width: 8em;
+  display: inline-block;
+}
+
+ul.job-description {
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+.job-description-entry {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.list-bullet {
+  padding-right: 1em;
+}
+
+.job-description .add-btn.btn-container {
+  margin-left: 1em;
+}

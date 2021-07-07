@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid';
+import { EditButton, SaveButton, CancelButton, AddButton } from '../buttons'
+import '../../styles/components/cvsections/SkillsSection.css'
 
 class SkillsSection extends Component {
   constructor(props) {
@@ -86,6 +88,9 @@ class SkillsSection extends Component {
             <input
               type="text"
               value={skill.name ? skill.name : ''}
+              minlength="2"
+              maxlength="45"
+              size="30"
               placeholder="Competency X"
               onChange={this.handleChange}
               data-type="name"
@@ -94,6 +99,8 @@ class SkillsSection extends Component {
             <input
               type="number"
               value={skill.rating ? skill.rating : ''}
+              min="1"
+              max="5"
               onChange={this.handleChange}
               data-type="rating"
               data-index={index}
@@ -108,9 +115,12 @@ class SkillsSection extends Component {
       skillsInfo.forEach(skill => {
         skills.push(
           // Check if value exists for field
-          <li key={skill.id}>
-            <p>{skill.name ? skill.name : 'Competency X'}</p>
-            <p>{skill.rating ? skill.rating : 3}</p>
+          <li key={skill.id} className="skill">
+            <p className="skill-name">{skill.name ? skill.name : 'Competency X'}</p>
+            <div className="skill-rating-container">
+              <div className={skill.rating ? "skill-rating skill-rating-" + skill.rating.toString() : "skill-rating skill-rating-3"}>
+              </div>
+            </div>
           </li>
         );
       });
@@ -120,10 +130,10 @@ class SkillsSection extends Component {
     // Filter control options displayed
     let controls = [];
 
-    let editBtn = <div onClick={this.handleToggleEdit} key="skills-edit">EDIT</div>;
-    let saveBtn = <div onClick={this.handleSave} key="skills-save">SAVE</div>;
-    let cancelBtn = <div onClick={this.handleCancel} key="skills-cancel">CANCEL</div>;
-    let addSkillBtn = <div onClick={this.handleAddSkill} key="work-add">ADD SKILL</div>;
+    let editBtn = <EditButton onClick={this.handleToggleEdit} key="skill-edit" />;
+    let saveBtn = <SaveButton onClick={this.handleSave} key="skill-save" />;
+    let cancelBtn = <CancelButton onClick={this.handleCancel} key="skill-cancel" />;
+    let addSkillBtn = <AddButton onClick={this.handleAddSkill} key="skill-add" />;
 
     if (this.state.isEditOn) {
       controls.push(addSkillBtn, cancelBtn, saveBtn);
@@ -132,7 +142,8 @@ class SkillsSection extends Component {
     }
 
     return(
-      <div>
+      <div className="skills-section cv-section">
+        <h2 className="section-title">Key Competencies</h2>
         <ul>
           {skills}
         </ul>

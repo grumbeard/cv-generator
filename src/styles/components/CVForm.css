@@ -1,0 +1,43 @@
+.cv-form {
+  width: 874px;
+
+  grid-area: cv-form;
+  justify-self: center;
+
+  display: grid;
+  grid-template-areas: "name name"
+                       "contact profile"
+                       "skills work"
+                       "education work";
+
+  grid-template-rows: auto auto repeat(2, 1fr);
+  grid-template-columns: 1fr 2fr;
+}
+
+.cv-section {
+  padding: 2em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-section ul {
+  list-style-type: none;
+}
+
+.cv-section input, .cv-section textarea {
+  margin-bottom: 1em;
+  padding: 5px;
+  border: none;
+  border-radius: 1em;
+  line-height: 2em;
+  width: 100%;
+}
+
+.section-title {
+  margin-bottom: 1.5em;
+  font-size: 1.3em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+

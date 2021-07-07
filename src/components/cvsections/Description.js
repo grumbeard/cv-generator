@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { AddButton } from '../buttons';
 
 class Description extends Component {
   constructor(props) {
@@ -29,7 +30,8 @@ class Description extends Component {
         // Display info as input fields
         this.props.description.forEach((line, index) => {
           summary.push(
-            <li key={this.props.jobId + index}>
+            <li key={this.props.jobId + index} className="job-description-entry">
+              <span className="list-bullet">&#8226;</span>
               <textarea
                 value={line ? line : ''}
                 placeholder='Summary of Achievements'
@@ -45,7 +47,8 @@ class Description extends Component {
         // Display info as text
         this.props.description.forEach((line, index) => {
           summary.push(
-            <li key={this.props.jobId + index}>
+            <li key={this.props.jobId + index} className="job-description-entry">
+              <span className="list-bullet">&#8226;</span>
               {line ? line : 'Summary of Achievements'}
             </li>
           );
@@ -54,9 +57,19 @@ class Description extends Component {
       }
     }
 
+    // Filter control options displayed
+    let controls = [];
+
+    let addLineBtn = <AddButton onClick={this.props.onAddDescription} key="description-add" />;
+
+    if (this.props.isEditOn) {
+      controls.push(addLineBtn);
+    }
+
     return(
-      <ul>
+      <ul className="job-description">
         {summary}
+        {controls}
       </ul>
     )
   }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { EditButton, SaveButton, CancelButton } from '../buttons'
+import '../../styles/components/cvsections/ContactInfoSection.css'
 
 class ContactInfoSection extends Component {
   constructor(props) {
@@ -67,6 +69,12 @@ class ContactInfoSection extends Component {
     let contactInfo = [];
     let allInfo = JSON.parse(JSON.stringify(this.state.contactInfo));
 
+    const icons = {
+      mobile: <span className="material-icons-round contact-icon">phone</span>,
+      email: <span className="material-icons-round contact-icon">email</span>,
+      linkedIn: <span className="material-icons-round contact-icon">work</span>
+    }
+
     for (let info in allInfo) {
 
       // Check if being edited
@@ -77,6 +85,9 @@ class ContactInfoSection extends Component {
           <input
             type="text"
             value={allInfo[info] ? allInfo[info] : ''}
+            minlength="4"
+            maxlength="40"
+            size="30"
             placeholder={info[0].toUpperCase() + info.substring(1)}
             onChange={this.handleChange}
             data-type={info}
@@ -90,8 +101,8 @@ class ContactInfoSection extends Component {
         contactInfo.push(
           // Check if no value available for field
           allInfo[info] ?
-          <li key={info}>{allInfo[info]}</li> :
-          <li key={info}>{info[0].toUpperCase() + info.substring(1)}</li>
+          <li key={info} className="contact">{icons[info]}{allInfo[info]}</li> :
+          <li key={info} className="contact">{icons[info]}{info[0].toUpperCase() + info.substring(1)}</li>
         );
 
       }
@@ -100,9 +111,9 @@ class ContactInfoSection extends Component {
     // Filter control options displayed
     let controls = [];
 
-    let editBtn = <div onClick={this.handleToggleEdit} key="contact-edit">EDIT</div>;
-    let saveBtn = <div onClick={this.handleSave} key="contact-save">SAVE</div>;
-    let cancelBtn = <div onClick={this.handleCancel} key="contact-cancel">CANCEL</div>;
+    let editBtn = <EditButton onClick={this.handleToggleEdit} key="contact-edit" />;
+    let saveBtn = <SaveButton onClick={this.handleSave} key="contact-save" />;
+    let cancelBtn = <CancelButton onClick={this.handleCancel} key="contact-cancel" />;
 
     if (this.state.isEditOn) {
       controls.push(cancelBtn, saveBtn);
@@ -111,7 +122,8 @@ class ContactInfoSection extends Component {
     }
 
     return(
-      <div>
+      <div className="contact-info-section cv-section">
+        <h2 className="section-title">Contact</h2>
         <ul>
           {contactInfo}
         </ul>

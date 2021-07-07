@@ -90,34 +90,26 @@ class Job extends Component {
 
     }
 
-    // Filter control options displayed
-    let controls = [];
-
-    let addLineBtn = <div onClick={this.handleAddDescription} key="description-add">ADD LINE</div>;
-
-    if (this.props.isEditOn) {
-      controls.push(addLineBtn);
-    }
 
     return(
-      <table>
+      <table className="job-entry">
         <tbody>
           <tr>
-            <td>{titleContent}</td>
-            <td>{yearsContent}</td>
+            <td className="job-title" colSpan="2">{titleContent}</td>
+          </tr>
+          <tr className="company-years-row">
+            <td className="job-company" colSpan="1">{companyContent}</td>
+            <td className="job-years" colSpan="1">{yearsContent}</td>
           </tr>
           <tr>
-            <td>{companyContent}</td>
-          </tr>
-          <tr>
-            <td>
+            <td colSpan="2">
               <Description
                 description={description}
                 isEditOn={this.props.isEditOn}
                 onChange={this.handleDescriptionChange}
                 jobId={id}
+                onAddDescription={this.handleAddDescription}
               />
-              {controls}
             </td>
           </tr>
         </tbody>

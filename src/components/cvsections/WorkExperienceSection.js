@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid';
 import Job from './Job';
+import { EditButton, SaveButton, CancelButton, AddButton, DeleteButton } from '../buttons'
+import '../../styles/components/cvsections/WorkExperienceSection.css'
 
 class WorkExperienceSection extends Component {
   constructor(props) {
@@ -16,6 +18,7 @@ class WorkExperienceSection extends Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleAddJob = this.handleAddJob.bind(this);
+    this.handleDeleteJob = this.handleDeleteJob.bind(this);
   }
 
   handleJobChange(job) {
@@ -69,6 +72,20 @@ class WorkExperienceSection extends Component {
     });
   }
 
+  handleDeleteJob(e) {
+    e.stopPropagation();
+    const jobId = e.target.dataset.id;
+    const jobIndex = this.state.workInfo.findIndex(job => job.id == jobId);
+
+    let newWorkInfo = JSON.parse(JSON.stringify(this.state.workInfo));
+
+    newWorkInfo.splice(jobIndex, 1);
+
+    this.setState({
+      workInfo:newWorkInfo
+    });
+  }
+
   componentDidMount() {
     // Create sample data if needed
     if (this.state.workInfo.length === 0) this.handleAddJob();
@@ -88,15 +105,24 @@ class WorkExperienceSection extends Component {
           onChange={this.handleJobChange}
         />
       );
+      if (this.state.isEditOn) {
+        jobs.push(
+          <DeleteButton
+            onClick={this.handleDeleteJob}
+            key={job.id + "-delete"}
+            id={job.id}
+          />
+        );
+      }
     });
 
     // Filter control options displayed
     let controls = [];
 
-    let addJobBtn = <div onClick={this.handleAddJob} key="job-add">ADD JOB</div>;
-    let editBtn = <div onClick={this.handleToggleEdit} key="work-edit">EDIT</div>;
-    let saveBtn = <div onClick={this.handleSave} key="work-save">SAVE</div>;
-    let cancelBtn = <div onClick={this.handleCancel} key="work-cancel">CANCEL</div>;
+    let addJobBtn = <AddButton onClick={this.handleAddJob} key="job-add" />;
+    let editBtn = <EditButton onClick={this.handleToggleEdit} key="work-edit" />;
+    let saveBtn = <SaveButton onClick={this.handleSave} key="work-save" />;
+    let cancelBtn = <CancelButton onClick={this.handleCancel} key="work-cancel" />;
 
     // Hide Add Job and Save unless in edit mode
     if (this.state.isEditOn) {
@@ -106,7 +132,8 @@ class WorkExperienceSection extends Component {
     }
 
     return(
-      <div>
+      <div className="work-experience-section cv-section">
+        <h2 className="section-title">Work Experience</h2>
         {jobs}
         {controls}
       </div>

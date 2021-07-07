@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid';
+import { EditButton, SaveButton, CancelButton, AddButton } from '../buttons'
+import '../../styles/components/cvsections/EducationSection.css'
 
 class EducationSection extends Component {
   constructor(props) {
@@ -86,7 +88,7 @@ class EducationSection extends Component {
       // Display info as input fields
       educationInfo.forEach((school, index) => {
         educationList.push(
-          <li key={school.id}>
+          <li key={school.id} className="school-entry">
             <input
               type="text"
               value={school.name ? school.name : ''}
@@ -98,7 +100,7 @@ class EducationSection extends Component {
             <input
               type="text"
               value={school.qualification ? school.qualification : ''}
-              placeholder="Institution X"
+              placeholder="Degree/Qualification Awarded"
               onChange={this.handleChange}
               data-type="qualification"
               data-index={index}
@@ -134,8 +136,10 @@ class EducationSection extends Component {
                            + (school.yearEnd ? school.yearEnd : 2010);
 
         educationList.push(
-          <li key={school.id}>
-            {schoolName} - {schoolQualification} ({schoolYears})
+          <li key={school.id} className="school-entry">
+            <p>{schoolName}</p>
+            <p className="school-qualification">{schoolQualification}</p>
+            <p>{schoolYears}</p>
           </li>
         );
       });
@@ -144,10 +148,10 @@ class EducationSection extends Component {
     // Filter control options displayed
     let controls = [];
 
-    let addEducationBtn = <div onClick={this.handleAddEducation} key="education-add">ADD JOB</div>;
-    let editBtn = <div onClick={this.handleToggleEdit} key="education-edit">EDIT</div>;
-    let saveBtn = <div onClick={this.handleSave} key="education-save">SAVE</div>;
-    let cancelBtn = <div onClick={this.handleCancel} key="education-cancel">CANCEL</div>;
+    let addEducationBtn = <AddButton onClick={this.handleAddEducation} key="education-add" />;
+    let editBtn = <EditButton onClick={this.handleToggleEdit} key="education-edit" />;
+    let saveBtn = <SaveButton onClick={this.handleSave} key="education-save" />;
+    let cancelBtn = <CancelButton onClick={this.handleCancel} key="education-cancel" />;
 
     // Hide Add Job and Save unless in edit mode
     if (this.state.isEditOn) {
@@ -157,7 +161,8 @@ class EducationSection extends Component {
     }
 
     return(
-      <div>
+      <div className="education-section cv-section">
+        <h2 className="section-title">Education</h2>
         <ul>
           {educationList}
         </ul>

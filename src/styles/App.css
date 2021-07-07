@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+.app-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas: "sidebar cv-form";
+  font-family: 'Roboto', sans-serif;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  min-width: 200px;
+  background-color: thistle;
+}

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import '../styles/components/CVForm.css'
 import NameSection from './cvsections/NameSection';
 import ContactInfoSection from './cvsections/ContactInfoSection';
 import ProfileSection from './cvsections/ProfileSection';
@@ -71,7 +73,7 @@ class CVForm extends Component {
 
   render() {
     return(
-      <div>
+      <div className="cv-form">
         <NameSection
           name={this.state.name}
           onSave={this.handleNameSave}

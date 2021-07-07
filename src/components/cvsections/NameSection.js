@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { EditButton, SaveButton, CancelButton } from '../buttons'
+import '../../styles/components/cvsections/NameSection.css'
 
 class NameSection extends Component {
   constructor(props) {
@@ -49,6 +51,9 @@ class NameSection extends Component {
       name = <input
               type="text"
               value={this.state.name ? this.state.name : ''}
+              minlength="4"
+              maxlength="30"
+              size="35"
               placeholder="Your Name"
               onChange={this.handleChange}
             />;
@@ -63,9 +68,9 @@ class NameSection extends Component {
     // Filter control options displayed
     let controls = [];
 
-    let editBtn = <div onClick={this.handleToggleEdit} key="name-edit">EDIT</div>;
-    let saveBtn = <div onClick={this.handleSave} key="name-save">SAVE</div>;
-    let cancelBtn = <div onClick={this.handleCancel} key="name-cancel">CANCEL</div>;
+    let editBtn = <EditButton onClick={this.handleToggleEdit} key="name-edit" />;
+    let saveBtn = <SaveButton onClick={this.handleSave} key="name-save" />;
+    let cancelBtn = <CancelButton onClick={this.handleCancel} key="name-cancel" />;
 
     if (this.state.isEditOn) {
       controls.push(cancelBtn, saveBtn);
@@ -74,7 +79,7 @@ class NameSection extends Component {
     }
 
     return(
-      <div>
+      <div className="name-section cv-section">
         {name}
         {controls}
       </div>

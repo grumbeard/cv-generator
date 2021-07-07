@@ -1,0 +1,44 @@
+.skills-section {
+  background-color: #E5C9F2;
+  grid-area: skills;
+}
+
+.skill {
+  margin-bottom: 0.5em;
+}
+
+.skill-name {
+  padding-bottom: 0.5em;
+}
+
+/* create full bar */
+.skill-rating-container {
+  width: 100%;
+  background-color: #C4C4C4;
+}
+
+/* create bar with length corresponding to rating rating  */
+.skill-rating {
+  height: 1em;
+  background-color: #003169;
+}
+
+.skill-rating-1 {
+  width: 20%;
+}
+
+.skill-rating-2 {
+  width: 40%;
+}
+
+.skill-rating-3 {
+  width: 60%;
+}
+
+.skill-rating-4 {
+  width: 80%;
+}
+
+.skill-rating-5 {
+  width: 100%;
+}

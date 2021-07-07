@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { EditButton, SaveButton, CancelButton } from '../buttons'
+import '../../styles/components/cvsections/ProfileSection.css'
 
 class ProfileSection extends Component {
   constructor(props) {
@@ -67,9 +69,9 @@ class ProfileSection extends Component {
     // Filter control options displayed
     let controls = [];
 
-    let editBtn = <div onClick={this.handleToggleEdit} key="profile-edit">EDIT</div>;
-    let saveBtn = <div onClick={this.handleSave} key="profile-save">SAVE</div>;
-    let cancelBtn = <div onClick={this.handleCancel} key="profile-cancel">CANCEL</div>;
+    let editBtn = <EditButton onClick={this.handleToggleEdit} key="profile-edit" />;
+    let saveBtn = <SaveButton onClick={this.handleSave} key="profile-save" />;
+    let cancelBtn = <CancelButton onClick={this.handleCancel} key="profile-cancel" />;
 
     if (this.state.isEditOn) {
       controls.push(cancelBtn, saveBtn);
@@ -78,7 +80,8 @@ class ProfileSection extends Component {
     }
 
     return(
-      <div>
+      <div className="profile-section cv-section">
+        <h2 className="section-title">Profile</h2>
         {summary}
         {controls}
       </div>

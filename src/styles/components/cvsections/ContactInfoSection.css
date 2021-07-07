@@ -1,0 +1,13 @@
+.contact-info-section {
+  background-color: #F2F2F2;
+  grid-area: contact;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+}
+
+.contact-icon {
+  padding-right: 0.5em;
+}
