@@ -18,7 +18,7 @@ class WorkExperienceSection extends Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleAddJob = this.handleAddJob.bind(this);
-    this.handleDeleteJob = this.handleDeleteJob.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleJobChange(job) {
@@ -72,10 +72,10 @@ class WorkExperienceSection extends Component {
     });
   }
 
-  handleDeleteJob(e) {
+  handleDelete(e) {
     e.stopPropagation();
     const jobId = e.target.dataset.id;
-    const jobIndex = this.state.workInfo.findIndex(job => job.id == jobId);
+    const jobIndex = this.state.workInfo.findIndex(job => job.id === jobId);
 
     let newWorkInfo = JSON.parse(JSON.stringify(this.state.workInfo));
 
@@ -108,7 +108,7 @@ class WorkExperienceSection extends Component {
       if (this.state.isEditOn) {
         jobs.push(
           <DeleteButton
-            onClick={this.handleDeleteJob}
+            onClick={this.handleDelete}
             key={job.id + "-delete"}
             id={job.id}
           />

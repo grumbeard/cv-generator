@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid';
-import { EditButton, SaveButton, CancelButton, AddButton } from '../buttons'
+import { EditButton, SaveButton, CancelButton, AddButton, DeleteButton } from '../buttons'
 import '../../styles/components/cvsections/SkillsSection.css'
 
 class SkillsSection extends Component {
@@ -17,6 +17,7 @@ class SkillsSection extends Component {
     this.handleCancel = this.handleCancel.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAddSkill = this.handleAddSkill.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleAddSkill() {
@@ -70,6 +71,22 @@ class SkillsSection extends Component {
     });
   }
 
+  handleDelete(e) {
+    e.stopPropagation();
+    console.log(e.target);
+
+    const skillId = e.target.dataset.id;
+    const skillIndex = this.state.skillsInfo.findIndex(skill => skill.id === skillId);
+
+    let newSkillsInfo = JSON.parse(JSON.stringify(this.state.skillsInfo));
+
+    newSkillsInfo.splice(skillIndex, 1);
+
+    this.setState({
+      skillsInfo:newSkillsInfo
+    });
+  }
+
   componentDidMount() {
     // Create sample data if needed
     if (this.state.skillsInfo.length === 0) this.handleAddSkill();
@@ -107,6 +124,16 @@ class SkillsSection extends Component {
             />
           </li>
         );
+
+        if (this.state.isEditOn) {
+          skills.push(
+            <DeleteButton
+              onClick={this.handleDelete}
+              key={skill.id + "-delete"}
+              id={skill.id}
+            />
+          );
+        }
       });
 
     } else {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid';
-import { EditButton, SaveButton, CancelButton, AddButton } from '../buttons'
+import { EditButton, SaveButton, CancelButton, AddButton, DeleteButton } from '../buttons'
 import '../../styles/components/cvsections/EducationSection.css'
 
 class EducationSection extends Component {
@@ -17,6 +17,7 @@ class EducationSection extends Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -79,6 +80,22 @@ class EducationSection extends Component {
     });
   }
 
+  handleDelete(e) {
+    e.stopPropagation();
+    console.log(e.target);
+
+    const schoolId = e.target.dataset.id;
+    const schoolIndex = this.state.educationInfo.findIndex(school => school.id === schoolId);
+
+    let newEducationInfo = JSON.parse(JSON.stringify(this.state.educationInfo));
+
+    newEducationInfo.splice(schoolIndex, 1);
+
+    this.setState({
+      educationInfo:newEducationInfo
+    });
+  }
+
   render() {
     let educationList = [];
     let educationInfo = JSON.parse(JSON.stringify(this.state.educationInfo));
@@ -123,6 +140,16 @@ class EducationSection extends Component {
             />
           </li>
         );
+
+        if (this.state.isEditOn) {
+          educationList.push(
+            <DeleteButton
+              onClick={this.handleDelete}
+              key={school.id + "-delete"}
+              id={school.id}
+            />
+          );
+        }
       });
 
     } else {
