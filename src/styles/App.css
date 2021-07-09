@@ -5,6 +5,10 @@
     padding: 0;
   }
 
+a:link, a:active, a:visited, a:hover {
+  text-decoration: none;
+}
+
 .app-wrapper {
   width: 100vw;
   height: 100vh;
@@ -12,12 +16,41 @@
   grid-template-columns: 1fr 4fr;
   grid-template-areas: "sidebar cv-form";
   font-family: 'Roboto', sans-serif;
+  color: rgba(0,0,0,0.8);
 }
 
 .sidebar {
   grid-area: sidebar;
   min-width: 200px;
-  padding: 1em;
   text-align: center;
   background-color: thistle;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+.sidebar > * {
+  padding: 1em;
+}
+
+.credits-wrapper {
+  background-color: rgba(0,0,0,0.8);
+  cursor: pointer;
+}
+
+.credits-wrapper:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+
+.credits-wrapper a {
+  color: #F2F2F2;
+}
+
+.github-mark {
+  width: 2em;
+  height: 2em;
+  filter: invert(1);
+  margin-bottom: 0.5em;
+}
+
