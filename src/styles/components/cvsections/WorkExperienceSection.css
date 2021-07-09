@@ -1,6 +1,7 @@
 .work-experience-section {
   background-color: #CEC3EE;
   grid-area: work;
+  flex: 1;
 }
 
 .job-entry {

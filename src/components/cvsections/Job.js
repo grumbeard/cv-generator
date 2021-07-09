@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Description from './Description';
+import { DeleteButton } from '../buttons';
 
 class Job extends Component {
   constructor(props) {
@@ -95,6 +96,21 @@ class Job extends Component {
 
     }
 
+    // Filter control options displayed
+    let controls = [];
+
+    let deleteBtn = <tr>
+                      <DeleteButton
+                        onClick={this.props.onDeleteJob}
+                        key={id + "-delete"}
+                        id={id}
+                        />
+                    </tr>
+
+    if (this.props.isEditOn) {
+      controls.push(deleteBtn);
+    }
+
 
     return(
       <table className="job-entry">
@@ -117,6 +133,7 @@ class Job extends Component {
               />
             </td>
           </tr>
+          {controls}
         </tbody>
       </table>
     )

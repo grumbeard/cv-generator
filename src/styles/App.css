@@ -11,10 +11,11 @@ a:link, a:active, a:visited, a:hover {
 
 .app-wrapper {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-areas: "sidebar cv-form";
+  align-items: flex-start;
   font-family: 'Roboto', sans-serif;
   color: rgba(0,0,0,0.8);
 }
@@ -29,7 +30,7 @@ a:link, a:active, a:visited, a:hover {
 
 @media (min-width: 1400px) {
   .app-wrapper {
-    font-size: 2em;
+    font-size: 1.4em;
   }
 
   input, textarea {
@@ -40,6 +41,7 @@ a:link, a:active, a:visited, a:hover {
 .sidebar {
   grid-area: sidebar;
   min-width: 200px;
+  height: 100%;
   text-align: center;
   background-color: thistle;
 

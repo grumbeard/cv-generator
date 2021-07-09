@@ -1,8 +1,14 @@
 .name-section {
   position: relative;
-  height: 4em;
+  min-height: 2em;
   background-color: #DADADA;
   grid-area: name;
+}
+
+@media (max-width: 600px) {
+  .name-section {
+    min-height: 4em;
+  }
 }
 
 .name-section h1 {

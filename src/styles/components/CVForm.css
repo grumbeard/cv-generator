@@ -1,6 +1,6 @@
 .cv-form {
   width: 37.1em;
-  height: 52.6em;
+  min-height: 52.6em;
 
   grid-area: cv-form;
   justify-self: center;
@@ -10,7 +10,6 @@
                        "contact profile"
                        "skills work"
                        "education work";
-
   grid-template-rows: auto auto auto 1fr;
   grid-template-columns: 1fr 2fr;
 }
@@ -25,7 +24,6 @@
                           "skills"
                           "work"
                           "education";
-    grid-template-rows: repeat(6, auto);
     grid-template-columns: 1fr;
   }
 }

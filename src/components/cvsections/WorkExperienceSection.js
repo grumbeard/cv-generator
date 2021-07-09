@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid';
 import Job from './Job';
-import { EditButton, SaveButton, CancelButton, AddButton, DeleteButton } from '../buttons'
-import '../../styles/components/cvsections/WorkExperienceSection.css'
+import { EditButton, SaveButton, CancelButton, AddButton } from '../buttons';
+import '../../styles/components/cvsections/WorkExperienceSection.css';
 
 class WorkExperienceSection extends Component {
   constructor(props) {
@@ -103,17 +103,9 @@ class WorkExperienceSection extends Component {
           isEditOn={this.state.isEditOn}
           key={job.id}
           onChange={this.handleJobChange}
+          onDeleteJob={this.handleDelete}
         />
       );
-      if (this.state.isEditOn) {
-        jobs.push(
-          <DeleteButton
-            onClick={this.handleDelete}
-            key={job.id + "-delete"}
-            id={job.id}
-          />
-        );
-      }
     });
 
     // Filter control options displayed
