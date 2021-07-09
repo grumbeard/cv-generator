@@ -99,6 +99,7 @@ class EducationSection extends Component {
   render() {
     let educationList = [];
     let educationInfo = JSON.parse(JSON.stringify(this.state.educationInfo));
+    let currYear = new Date().getFullYear();
 
     if (this.state.isEditOn) {
 
@@ -125,7 +126,9 @@ class EducationSection extends Component {
             <input
               type="number"
               value={school.yearStart ? school.yearStart : ''}
-              placeholder="2000"
+              placeholder={currYear - 10}
+              min={currYear - 110}
+              max={currYear}
               onChange={this.handleChange}
               data-type="yearStart"
               data-index={index}
@@ -133,7 +136,9 @@ class EducationSection extends Component {
             <input
               type="number"
               value={school.yearEnd ? school.yearEnd : ''}
-              placeholder="2010"
+              placeholder={currYear - 6}
+              min={currYear - 110}
+              max={currYear}
               onChange={this.handleChange}
               data-type="yearEnd"
               data-index={index}

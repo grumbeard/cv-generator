@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uniqid from 'uniqid';
 
 import '../styles/components/CVForm.css'
 import NameSection from './cvsections/NameSection';
@@ -9,6 +10,7 @@ import SkillsSection from './cvsections/SkillsSection';
 import EducationSection from './cvsections/EducationSection';
 
 class CVForm extends Component {
+
   constructor() {
     super();
 
@@ -22,9 +24,27 @@ class CVForm extends Component {
         email: '',
         linkedIn: ''
       },
-      skillsInfo: [],
-      educationInfo: [],
-      workInfo: []
+      skillsInfo: [{
+        name: "Competency X",
+        rating: 3,
+        id: uniqid()
+      }],
+      educationInfo: [{
+        name: 'Institution X',
+        qualification: 'Bachelor of Arts in Dark',
+        yearStart: new Date().getFullYear() - 10,
+        yearEnd: new Date().getFullYear() - 6,
+        id: uniqid()
+      }],
+      workInfo: [{
+        title: 'Job Title',
+        yearStart: new Date().getFullYear() - 3,
+        yearEnd: new Date().getFullYear(),
+        currentlyWorking: true,
+        companyName: 'Company X',
+        description: ['Summary of Achievements'],
+        id: uniqid()
+      }]
     }
 
     this.handleNameSave = this.handleNameSave.bind(this);

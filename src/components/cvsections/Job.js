@@ -40,6 +40,7 @@ class Job extends Component {
     const { title, yearStart, yearEnd, currentlyWorking, companyName, description, id } = this.props.job;
 
     let titleContent, yearsContent, companyContent;
+    let currYear = new Date().getFullYear();
 
     if (this.props.isEditOn) {
 
@@ -54,18 +55,22 @@ class Job extends Component {
                     key={id + '-title'}
                   />;
       yearsContent = [<input
-                    type="text"
+                    type="number"
                     value={yearStart ? yearStart : ''}
                     placeholder="Year Start"
+                    min={currYear - 110}
+                    max={currYear}
                     onChange={this.handleChange}
                     data-id={id}
                     data-type="yearStart"
                     key={id + '-yearStart'}
                   />,
                   <input
-                    type="text"
+                    type="number"
                     value={yearEnd ? yearEnd : ''}
                     placeholder="Year End"
+                    min={currYear - 110}
+                    max={currYear}
                     onChange={this.handleChange}
                     data-id={id}
                     data-type="yearEnd"
