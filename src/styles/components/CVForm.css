@@ -1,5 +1,6 @@
 .cv-form {
-  width: 874px;
+  width: 37.1em;
+  height: 52.6em;
 
   grid-area: cv-form;
   justify-self: center;
@@ -12,6 +13,21 @@
 
   grid-template-rows: auto auto auto 1fr;
   grid-template-columns: 1fr 2fr;
+}
+
+@media (max-width: 600px) {
+  .cv-form {
+    width: 100%;
+    height: auto;
+    grid-template-areas: "name"
+                          "contact"
+                          "profile"
+                          "skills"
+                          "work"
+                          "education";
+    grid-template-rows: repeat(6, auto);
+    grid-template-columns: 1fr;
+  }
 }
 
 .cv-section {

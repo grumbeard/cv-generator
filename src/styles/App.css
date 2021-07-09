@@ -19,6 +19,24 @@ a:link, a:active, a:visited, a:hover {
   color: rgba(0,0,0,0.8);
 }
 
+@media (max-width: 600px) {
+  .app-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas: "cv-form"
+                          "sidebar";
+  }
+}
+
+@media (min-width: 1400px) {
+  .app-wrapper {
+    font-size: 2em;
+  }
+
+  input, textarea {
+    font-size: 0.8em;
+  }
+}
+
 .sidebar {
   grid-area: sidebar;
   min-width: 200px;
