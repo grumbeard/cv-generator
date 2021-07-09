@@ -10,7 +10,7 @@
                        "skills work"
                        "education work";
 
-  grid-template-rows: auto auto repeat(2, 1fr);
+  grid-template-rows: auto auto auto 1fr;
   grid-template-columns: 1fr 2fr;
 }
 

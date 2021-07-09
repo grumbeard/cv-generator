@@ -1,10 +1,13 @@
 .name-section {
+  position: relative;
+  height: 4em;
   background-color: #DADADA;
   grid-area: name;
-  padding-left: 0;
 }
 
 .name-section h1 {
+  position: absolute;
+  left: 0;
   padding: 0.5em 0 0.5em 0.5em;
   min-width: 60%;
   max-width: 80%;
